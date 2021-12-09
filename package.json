@@ -21,5 +21,9 @@
     "start": "nodemon app.js"
   },
   "author": "Imaginaris",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": [ "heroku" ],
+  "engines": {
+    "node" : "16.5.0"
+  }
 }
