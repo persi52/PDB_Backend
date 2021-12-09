@@ -84,8 +84,7 @@ const signIn = async (req,res) =>{
 			console.log(token);
                 res.cookie('token', token, {
                     secure: false, // set to true if your using https
-                    httpOnly: true,
-                    sameSite: 'lax'
+                    httpOnly: true
                   }).send(token);
                 res.end();
                 //res.send('Login success');
