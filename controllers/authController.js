@@ -81,7 +81,7 @@ const signIn = async (req,res) =>{
                     user_id : results.rows[0].user_id,
                 }, process.env.TOKEN_SECRET);
 
-       
+			console.log(token);
                 res.cookie('token', token, {
                     secure: true, // set to true if your using https
                     httpOnly: true,
