@@ -1,0 +1,66 @@
+POST http://localhost:5000/api/users/signUp
+Content-Type: application/json
+
+{
+    "nickname": "eldo mondo",
+    "email": "SesnioerBokso@bokos1.ms",
+    "password": "bokieeem1",
+    "repeatPassword": "bokieeem1"
+}
+###
+POST http://localhost:5000/api/users/signIn
+Content-Type: application/json
+
+{    
+    "email": "SesnioerBokso@bokos1.ms",
+    "password": "bokieeem1"   
+}
+###
+GET http://localhost:5000/api/movies/get_all
+###
+POST http://localhost:5000/api/recommend
+Content-Type: application/json
+
+{    
+    "receiver_id": 8,
+    "movie_id": 10
+}
+
+###
+POST http://localhost:5000/api/comments/add
+Content-Type: application/json
+
+{    
+    "movie_id": 1,
+    "comment_content": "siema tutal kolezka"
+}
+###
+POST http://localhost:5000/api/friends/sendRequest
+Content-Type: application/json
+
+{    
+    "receiver_id": 7
+}
+###
+GET http://localhost:5000/api/friends/get
+###
+POST http://localhost:5000/api/friends/remove
+Content-Type: application/json
+
+{    
+    "receiver_id": 1   
+}
+###
+POST http://localhost:5000/api/notifications/send
+Content-Type: application/json
+
+{   
+    "type": "Buokieeem",
+    "movie_id": null,     
+    "receiver_id": 1   
+}
+###
+POST http://localhost:5000/api/notifications/get
+
+
+
