@@ -90,7 +90,7 @@ const signIn = async (req,res) =>{
                     sameSite: 'none',
                     domain : 'https://pdbmovies.netlify.app'
                   }).send(token);
-                res.end();
+                //res.end();
                 // res.status(200).send({
                 //     status : "Ok",
                 //     token : token
