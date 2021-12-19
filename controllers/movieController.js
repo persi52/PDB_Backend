@@ -5,6 +5,7 @@ const router = express.Router();
 const pool = require('../models/db');
 const verifyToken = require("../controllers/verifyToken");
 const {getUsers} = require("../controllers/authController.js")
+const {getUserTaste} = require("../controllers/friendsController.js")
 
 //#region basicGetMovies
 const getMovies = async(req,res) =>{  
@@ -291,11 +292,103 @@ const getChoosenForYouMovies = async(req,res) => {
     
 }
 
+const addToSeenMovies = async(body) =>{
+    const user_id = body.user_id;
+    const movie_id = body.movie_id;
+    const finished_at = body.finished_at;
+
+    console.log(body)
+
+    try{
+        pool.query('SELECT * FROM seen_movies WHERE user_id=$1 AND movie_id=$2',[user_id,movie_id],
+        (err,results)=>{
+
+            if(err) throw err;
+
+            if(results.rowCount>0){
+                pool.query('UPDATE seen_movies SET finished_at=$1 WHERE user_id=$2 AND movie_id=$3',[finished_at,user_id,movie_id],
+                (err,results)=>{
+        
+                    if(err) throw err;
+                    else return true;
+                   // else res.status(200).send('Movie added to seenMovies')
+                           
+                })
+            }
+            else 
+                pool.query('INSERT INTO seen_movies (user_id,movie_id,finished_at) VALUES($1,$2,$3)',[user_id,movie_id,finished_at],
+                (err,results)=>{
+        
+                    if(err) throw err;
+                    else return true;
+                // else res.status(200).send('Movie added to seenMovies')
+                        
+                })
+                    
+        })
+    }catch(err){
+        console.log(err);
+    }  
+
+
+}
+
 //#endregion recommendationEngine
 
-//#region movieSearch
-//#endregion movieSearch
+const getUserGenresPercentage = async(req,res) => {    
+    const user_id = req.body.user_id
+    try{
+     await countUserGenresPercentage(user_id).then(data=>res.status(200).send(data))
 
+    }catch(err){
+        console.log(err);
+    }    
+
+}
+async function countUserGenresPercentage(user_id){
+    const presentGenres = [];
+    const genreJson = []; 
+    
+    try{
+    const taste = await getUserTaste(user_id);   
+
+    taste.forEach(element => {
+        if(!presentGenres.includes(element))
+            presentGenres.push(element)
+    })
+   
+   
+        
+       for(const element of presentGenres){
+        await pool.query('SELECT name FROM genres WHERE genre_id=$1',[element])
+        .then(data =>{
+            
+            if(data.rowCount>0)
+            {
+                return{
+                    genre_id : element,
+                    name : data.rows[0].name,
+                    amount : 0    
+                 }
+            }           
+        }).then((data) => {       
+            taste.forEach( value => {
+             if(value == data.genre_id){
+                 data.amount++
+             }             
+         })
+         data.amount = Math.round((data.amount/ taste.length) * 100)
+         genreJson.push(data)        
+        })  
+    }        
+      
+   
+    return genreJson
+        
+    }catch(err){
+        console.log(err);
+    }  
+}
 module.exports = {
     getMovies,
     getMoviesByGenre,
@@ -312,5 +405,8 @@ module.exports = {
     getUserToWatch,
     getFriendRated,
     isMovieInToWatch,
-    getGenres
+    getGenres,
+    addToSeenMovies,
+    getUserGenresPercentage
 }
+

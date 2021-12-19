@@ -19,5 +19,6 @@ router.get('/get/toWatch',verifyToken,movieController.getUserToWatch);
 router.get('/get/rated/:user_id',verifyToken,movieController.getFriendRated);
 router.post('/remove/toWatch',verifyToken,movieController.removeFromToWatch);
 router.get('/is_toWatch/:movie_id',verifyToken,movieController.isMovieInToWatch);
+router.get('/get/graph',verifyToken,movieController.getUserGenresPercentage)
 
 module.exports = router;

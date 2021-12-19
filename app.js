@@ -20,7 +20,7 @@ app.use(session({
 app.use(cors({credentials: true, origin: 'https://pdbmovies.netlify.app'}));
 app.use(cookieParser());
 app.use(function(req, res, next) {  //cross origin resource sharing, pozwolenie na łączenie sie frontendu i backendu 
-   // res.header("Access-Control-Allow-Origin", 'http://localhost:3000');
+   // res.header("Access-Control-Allow-Origin", 'https://pdbmovies.netlify.app');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
    // res.header("Accept-Ranges","*");
 
@@ -30,6 +30,7 @@ app.use(flash());
 
 //Import Routes
 const authRoute = require('./routes/auth-route');
+const usersRoute = require('./routes/users-route');
 const streamRoute = require('./routes/stream-route');
 const movieRoute = require('./routes/movie-route');
 const recommendationRoute = require('./routes/recommend-route');
@@ -39,7 +40,8 @@ const friendsRoute = require('./routes/friends-route');
 const notificationsRoute = require('./routes/notifications-route');
 
 //Route Middlewares
-app.use('/api/users/', authRoute );
+app.use('/api/auth/', authRoute );
+app.use('/api/users/', usersRoute );
 app.use('/api/movies/', movieRoute);
 app.use('/api/stream/', streamRoute);
 app.use('/api/recommend/', recommendationRoute);
