@@ -116,14 +116,18 @@ const signIn = async (req,res) =>{
     }catch(err){
          console.log(err)
          res.status(500).send()
-     } 
+    } 
 
 };
 
 
-
+const signOut = async(req,res) =>{
+    res.clearCookie("token");
+    res.status(200).send('User signed out successfully');
+}
 
 module.exports = {
     signUp,
-    signIn       
+    signIn,
+    signOut      
 };
