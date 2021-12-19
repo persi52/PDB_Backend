@@ -84,19 +84,20 @@ const signIn = async (req,res) =>{
                 }, process.env.TOKEN_SECRET);
 
        
-                // res.status(200).cookie('token', token, {
-                //     secure: true, // set to true if your using https
-                //     httpOnly: true,
-                //     sameSite: 'none'
-                //   }).send({
-                //     status : "Ok",
-                //     token : token
-                // });
-                // res.end();
-                res.status(200).send({
+                res.status(200).cookie('token', token, {
+                    secure: true, // set to true if your using https
+                    httpOnly: true,
+                    sameSite: 'none',
+                    dopmain : 'https://pdbmovies.netlify.app'
+                  }).send({
                     status : "Ok",
                     token : token
-                })
+                  });
+                // res.end();
+                // res.status(200).send({
+                //     status : "Ok",
+                //     token : token
+                // })
                 //res.send('Login success');
                 // do stuff
             } else {
