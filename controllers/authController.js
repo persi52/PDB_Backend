@@ -87,7 +87,7 @@ const signIn = async (req,res) =>{
                 res.status(200).cookie('token', token, {
                     secure: true, // set to true if your using https
                     httpOnly: true,
-                    sameSite: 'lax'
+                    sameSite: 'none'
                   }).send({
                     status : "Ok",
                     token : token
