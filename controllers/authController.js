@@ -84,11 +84,11 @@ const signIn = async (req,res) =>{
                 }, process.env.TOKEN_SECRET);
 
        
-                // res.cookie('token', token, {
-                //     secure: true, // set to true if your using https
-                //     httpOnly: true,
-                //     sameSite: 'lax'
-                //   }).send(token);
+                res.cookie('token', token, {
+                    secure: true, // set to true if your using https
+                    httpOnly: true,
+                    sameSite: 'lax'
+                  })//.send(token);
                 // res.end();
                 res.status(200).send({
                     status : "Ok",
