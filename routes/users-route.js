@@ -10,6 +10,6 @@ router.get('/getUserById/:id',verifyToken, usersController.getUserById);
 router.post('/account/changePassword',verifyToken,usersController.changePassword);
 router.post('/account/changeNickname',verifyToken,usersController.changeNickname);
 router.post('/account/changePicture',verifyToken, usersController.changeProfilePic);
-router.get('/getCurrentUser', verifyToken ,authController.getCurrentUser);
+router.get('/getCurrentUser', verifyToken, usersController.getCurrentUser);
 
 module.exports = router;

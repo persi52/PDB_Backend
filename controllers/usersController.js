@@ -181,11 +181,31 @@ const changeProfilePic = async(req,res) =>{
     }
 }
 
+
+const getCurrentUser = async(req,res) => {
+    const currentUser = req.user;
+
+    if(!currentUser) res.status(400).send('User is not logged in'); 
+
+    try{
+        pool.query('SELECT * FROM users WHERE user_id=$1',[currentUser.user_id],(err,results)=>{
+
+            res.status(200).send(results.rows[0]);
+           // console.log(results);
+        })
+    }catch(err){
+        console.log(err);
+        return res.status(500).send('Database err'); 
+    }
+};
+
+
 module.exports = {
     getUsers,
     getUsersToSearch,
     getUserById,
     changePassword,
     changeNickname,
-    changeProfilePic
+    changeProfilePic,
+    getCurrentUser
 };

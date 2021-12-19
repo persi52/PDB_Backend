@@ -118,34 +118,12 @@ const signIn = async (req,res) =>{
          res.status(500).send()
      } 
 
-
-
 };
 
-
-
-
-const getCurrentUser = async(req,res) => {
-    const currentUser = req.user;
-
-    if(!currentUser) res.status(400).send('User is not logged in'); 
-
-    try{
-        pool.query('SELECT * FROM users WHERE user_id=$1',[currentUser.user_id],(err,results)=>{
-
-            res.status(200).send(results.rows[0]);
-           // console.log(results);
-        })
-    }catch(err){
-        console.log(err);
-        return res.status(500).send('Database err'); 
-    }
-};
 
 
 
 module.exports = {
     signUp,
-    signIn,
-    getCurrentUser   
+    signIn       
 };
