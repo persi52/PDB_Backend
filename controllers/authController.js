@@ -87,9 +87,9 @@ const signIn = async (req,res) =>{
                 res.cookie('token', token, {
                     secure: true, // set to true if your using https
                     httpOnly: true,
-                    sameSite: 'none',
+                    sameSite: 'lax',
                     domain : 'https://pdbmovies.netlify.app'
-                  }).send(token);
+                }).send(token);
                 //res.end();
                 // res.status(200).send({
                 //     status : "Ok",
