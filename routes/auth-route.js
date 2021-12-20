@@ -5,6 +5,6 @@ const verifyToken = require("../controllers/verifyToken");
 
 router.post('/signUp', authController.signUp);
 router.post('/signIn', authController.signIn);
-router.delete('/signOut', authController.signOut);
+router.get('/signOut', authController.signOut);
 
 module.exports = router;
