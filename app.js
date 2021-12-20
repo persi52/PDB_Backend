@@ -13,6 +13,7 @@ dotenv.config();
 const app = express();
 app.use(express.json()); // zeby apka akceptowala jsony
 app.use(session({
+    cookie: { domain:'https://pdbmovies.netlify.app'},
     secret: 'secret', //encrypt information stored in a session
     resave: false, //should we resave session variables if nothing is changed
     saveUninitialized: false //do we wanna save session if there is no value placed in a session
