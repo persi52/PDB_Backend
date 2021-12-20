@@ -23,7 +23,7 @@ app.use(session({
     resave: false, //should we resave session variables if nothing is changed
     saveUninitialized: false //do we wanna save session if there is no value placed in a session
 }));
-app.use(cors({credentials: true, origin:'https://localhost:3000'}));
+app.use(cors({credentials: true, origin:'http://localhost:3000'}));
 app.use(cookieParser());
 app.use(function(req, res, next) {  //cross origin resource sharing, pozwolenie na łączenie sie frontendu i backendu 
    // res.header("Access-Control-Allow-Origin", 'https://pdbmovies.netlify.app');
