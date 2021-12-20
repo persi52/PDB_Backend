@@ -22,7 +22,9 @@ app.use(cookieParser());
 app.use(function(req, res, next) {  //cross origin resource sharing, pozwolenie na łączenie sie frontendu i backendu 
    // res.header("Access-Control-Allow-Origin", 'https://pdbmovies.netlify.app');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-   // res.header("Accept-Ranges","*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+    res.header('Access-Control-Allow-Credentials', true);
+    // res.header("Accept-Ranges","*");
 
     next();
 });
