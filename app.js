@@ -14,12 +14,17 @@ const app = express();
 app.use(express.json()); // zeby apka akceptowala jsony
 app.set("trust proxy", 1);
 app.use(session({
-    cookie: { domain:'https://pdbmovies.netlify.app'},
+    cookie: { 
+        domain:'https://pdbmovies.netlify.app',
+        sameSite : 'none',
+        secure : true
+    },
     secret: 'secret', //encrypt information stored in a session
     resave: false, //should we resave session variables if nothing is changed
     saveUninitialized: false //do we wanna save session if there is no value placed in a session
 }));
-app.use(cors({credentials: true, origin: 'https://pdbmovies.netlify.app'}));
+app.use(cors({credentials: true, origin: 'https://pdbmovies.netlify.app',
+    exposedHeaders: ["set-cookie"]}));
 app.use(cookieParser());
 app.use(function(req, res, next) {  //cross origin resource sharing, pozwolenie na łączenie sie frontendu i backendu 
    // res.header("Access-Control-Allow-Origin", 'https://pdbmovies.netlify.app');
