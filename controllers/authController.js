@@ -87,8 +87,7 @@ const signIn = async (req,res) =>{
                 res.cookie('token', token, {
                     secure: true, // set to true if your using https
                     httpOnly: true,
-                    sameSite: 'none',
-                    domain : '.netlify.app'                 
+                    sameSite: 'none'                                
                 }).send({token : token});
                 // res.end();
                 // res.status(200).send({
@@ -120,10 +119,10 @@ const signIn = async (req,res) =>{
 
 
 const signOut = async(req,res) =>{
-    let Cookies = JSON.stringify(req.cookies)
-    console.log(Cookies);
+    //let Cookies = JSON.stringify(req.cookies)
+    console.log(req.cookies);
     res.clearCookie("token");
-    res.status(200).send('User signed out successfully');
+    res.status(200).send('User signed out successfully ' + req.cookies);
 }
 
 module.exports = {
