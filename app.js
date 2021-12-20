@@ -12,6 +12,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json()); // zeby apka akceptowala jsony
+app.set("trust proxy", 1);
 app.use(session({
     cookie: { domain:'https://pdbmovies.netlify.app'},
     secret: 'secret', //encrypt information stored in a session

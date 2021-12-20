@@ -1,4 +1,5 @@
 {
+  "proxy": "https://cryptic-sea-64674.herokuapp.com",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
