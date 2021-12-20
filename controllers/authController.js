@@ -120,8 +120,8 @@ const signIn = async (req,res) =>{
 
 const signOut = async(req,res) =>{
     //let Cookies = JSON.stringify(req.cookies)
-    console.log(req.cookies);
-    res.clearCookie("token");
+    console.log(req.cookies.token);
+    await res.clearCookie("token");
     res.status(200).send('User signed out successfully ' + req.cookies);
 }
 
